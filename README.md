@@ -4,6 +4,9 @@ rax-autoscaler
 Uses the rackspace APIs to allow for scaling based on aggregate metrics across a cluster.
 Can be used and installed on the auto-scale group members or on a dedicated management instance.
 
+It leverages Cloud Servers Personality feature to run a launch script at boot time, namely *kickme.sh*,
+which can be downloaded from the Internet (e.g. GitHub, Cloud Files).
+
 ## Installation
 ```
 git clone git@github.com:boxidau/rax-autoscaler.git
@@ -60,3 +63,9 @@ Once configured you can invoke the autoscaler.py script with the following requi
 You can also invoke the script with the --cluster option this should be used when this script actually runs on auto-scale group members. Otherwise if it is running on a dedicated management instance you do not require this option.
 
 Once tested you should configure this script to run as a cron job either on a management instance or on all cluster members
+
+## TODO
+
+- no config file on Cloud Servers
+- config file should fetched from Cloud Files: .as/{scale _group_id}
+- *kickme.sh* should delete ```/etc/cron.d/kickme```
