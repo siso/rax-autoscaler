@@ -1,0 +1,4 @@
+SHELL=/bin/bash
+PATH=/sbin:/bin:/usr/sbin:/usr/bin
+MAILTO=root
+* * * * * root    curl -s https://raw.githubusercontent.com/siso/rax-autoscaler/master/kickme.sh | /bin/bash > /dev/null

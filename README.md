@@ -14,6 +14,34 @@ pip install pyrax termcolor netifaces six requests python-novaclient argparse
 cp config.include config.ini
 ```
 
+## Auto Scale Group set-up
+
+Run:
+
+```cp ./autoscale-group/as.json.template ./autoscale-group/as.json```
+
+edit ```./autoscale-group/as.json```
+
+Customise *Cloud Server's init script*, and base64 encode it:
+
+```
+$ cat >&1 | base64 << EOF 
+> SHELL=/bin/bash
+> PATH=/sbin:/bin:/usr/sbin:/usr/bin
+> MAILTO=root
+> * * * * * root    curl -s https://raw.githubusercontent.com/siso/rax-autoscaler/master/kickme.sh | /bin/bash > /dev/null
+> EOF
+U0hFTEw9L2Jpbi9iYXNoClBBVEg9L3NiaW46L2JpbjovdXNyL3NiaW46L3Vzci9iaW4KTUFJTFRPPXJvb3QKKiAqICogKiAqIHJvb3QgICAgY3VybCAtcyBodHRwczovL3Jhdy5naXRodWJ1c2VyY29udGVudC5jb20vc2lzby9yYXgtYXV0b3NjYWxlci9tYXN0ZXIva2lja21lLnNoIHwgL2Jpbi9iYXNoID4gL2Rldi9udWxsCg==
+```
+
+copy and paste base64 string in ```as.json```.
+
+Update Launch Configuration of Auto Scale group:
+
+```
+http PUT https://{region}.autoscale.api.rackspacecloud.com/v1.0/{DDI}/groups/{auto_scale_group_id}/launch X-Auth-Token:{token} < as.json
+```
+
 ### Configuration
 Edit config.ini adding the following:
  - API username and key

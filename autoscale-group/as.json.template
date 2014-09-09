@@ -1,0 +1,27 @@
+{
+    "args": {
+        "server": {
+            "flavorRef": "{cloud_server_flavour_id}",
+            "imageRef": "{cloud_server_image_id}",
+            "metadata": {
+                "FOO": "BAR"
+            },
+            "name": "as",
+            "networks": [
+                    {
+                        "uuid": "00000000-0000-0000-0000-000000000000"
+                    },
+                    {
+                        "uuid": "11111111-1111-1111-1111-111111111111"
+                    }
+            ],
+        "personality": [
+            {
+                "path": "/etc/cron.d/kickme",
+                "contents": "U0hFTEw9L2Jpbi9iYXNoClBBVEg9L3NiaW46L2JpbjovdXNyL3NiaW46L3Vzci9iaW4KTUFJTFRPPXJvb3QKKiAqICogKiAqIHJvb3QgICAgY3VybCAtcyBodHRwczovL3Jhdy5naXRodWJ1c2VyY29udGVudC5jb20vc2lzby9yYXgtYXV0b3NjYWxlci9tYXN0ZXIva2lja21lLnNoIHwgL2Jpbi9iYXNoID4gL2Rldi9udWxsCg=="
+            }
+        ]
+        }
+    },
+    "type": "launch_server"
+}
